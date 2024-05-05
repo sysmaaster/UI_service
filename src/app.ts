@@ -1,0 +1,50 @@
+import cors from "cors";
+import express from "express";
+import methodOverride from "method-override";
+import flash from "connect-flash";
+import expressLayout from 'express-ejs-layouts'
+import session from 'express-session';
+import path from "path";
+import Router from "./router";
+
+const app = express();
+const port = 3000;
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE,HEAD,PATCH",
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+  })
+);
+app.use(methodOverride("_method"));
+
+// Static Files
+app.use(express.static(path.resolve(path.resolve(), "public")));
+
+// Express Session
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+    }
+  })
+);
+
+// Flash Messages
+app.use(flash()); //{ sessionKeyName: 'flashMessage' }
+
+// Templating Engine
+app.use(expressLayout);
+app.set('layout', './layouts/main');
+app.set("view engine", "ejs"); // configure template engine
+app.set("views", path.resolve(path.resolve(), "views")); // set express to look in this folder to render our view
+
+// Routes 
+app.use( Router());
+
+export default app;
