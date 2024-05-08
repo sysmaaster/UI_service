@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import methodOverride from "method-override";
 import flash from "connect-flash";
+import bodyParser from "body-parser";
 import expressLayout from 'express-ejs-layouts'
 import session from 'express-session';
 import path from "path";
@@ -34,6 +35,9 @@ app.use(
     }
   })
 );
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // parse form data client
 
 // Flash Messages
 app.use(flash()); //{ sessionKeyName: 'flashMessage' }

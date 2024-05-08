@@ -30,9 +30,9 @@ createApp({
     },
   },
   async mounted() {
-    const res = await fetch("/wallet");
-    this.wallets = await res.json();
-    const categories = await fetch("/categories");
-    this.categories = await categories.json();
+   // const res = await fetch("http://localhost:1242/wallet");
+   // this.wallets = await res.json();
+   // const categories = await fetch("http://localhost:1242/categories");
+  //  this.categories = await categories.json();
   },
 }).mount("#app");
