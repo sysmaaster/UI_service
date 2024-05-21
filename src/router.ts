@@ -2,6 +2,9 @@ import express from "express";
 import log from "./logger.service";
 import axios from "axios";
 
+import path from "path";
+
+
 const Router = () => {
   const router = express.Router();
 
@@ -15,7 +18,7 @@ const Router = () => {
       let wallets: any = [];
       let categories: any = [];
       await axios
-        .get("http://localhost:1242/", req)
+        .get(process.env.WALLET_URL ||"", req)
         .then(function (res) {
           wallets = res.data;
         })
@@ -42,6 +45,13 @@ const Router = () => {
     } catch (error) {
       console.log(error);
     }
+  });
+  router.post("/eventlist", async (req, res) => { 
+    console.log("ds")
+    const _basedir = path.resolve(path.resolve(), "public");
+    console.log(_basedir)
+    res.setHeader("content-type", "text/html;charset=utf-8");
+    res.sendFile(_basedir+"/2eventlist.html")
   });
 
   /** render about */
@@ -70,7 +80,7 @@ const Router = () => {
   //** Create wallet */
   router.post("/wallet/add", async (req, res) => {
     axios
-      .post("http://localhost:1242/", req.body)
+      .post(process.env.WALLET_URL ||"", req.body)
       .then(function (response) {
         // console.log(response);
 
@@ -87,7 +97,7 @@ const Router = () => {
   router.post("/wallet/edit/:id", async (req, res) => {
     log.fatal(req);
     await axios
-      .put(`http://localhost:1242/${req.params.id}`, req.body)
+      .put(`${process.env.WALLET_URL ||""}/${req.params.id}`, req.body)
       .then(function (response) {
         console.log(response);
 
@@ -104,7 +114,7 @@ const Router = () => {
   router.get("/wallet/view/:id", async (req, res) => {
     try {
       const wallets_item = await axios
-        .get(`http://localhost:1242/${req.params.id}`)
+        .get(`${process.env.WALLET_URL ||""}/${req.params.id}`)
         .then(function (res) {
           return res.data;
         })
@@ -130,7 +140,7 @@ const Router = () => {
   router.get("/wallet/edit/:id", async (req, res) => {
     try {
       const wallets_item = await axios
-        .get(`http://localhost:1242/${req.params.id}`)
+        .get(`${process.env.WALLET_URL ||""}/${req.params.id}`)
         .then(function (res) {
           return res.data;
         })
@@ -156,7 +166,7 @@ const Router = () => {
   router.post("/wallet/drop/:id", async (req, res) => {
     try {
       await axios
-        .delete(`http://localhost:1242/${req.params.id}`)
+        .delete(`${process.env.WALLET_URL ||""}/${req.params.id}`)
         .then(function (response) {
           console.log(response);
 
@@ -188,7 +198,7 @@ const Router = () => {
   //** Create Categories */
   router.post("/categories/add", async (req, res) => {
     axios
-      .post("http://localhost:1243/", req.body)
+      .post(process.env.CATEGORIES_URL ||"", req.body)
       .then(function (response) {
         // console.log(response);
 

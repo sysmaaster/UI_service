@@ -7,6 +7,7 @@ import expressLayout from 'express-ejs-layouts'
 import session from 'express-session';
 import path from "path";
 import Router from "./router";
+import Fake from "./fake";
 
 const app = express();
 const port = 3000;
@@ -50,5 +51,6 @@ app.set("views", path.resolve(path.resolve(), "views")); // set express to look 
 
 // Routes 
 app.use( Router());
+app.use( Fake());
 
 export default app;
