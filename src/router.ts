@@ -25,14 +25,14 @@ const Router = () => {
         .catch(function (error) {
           log.fatal(error + "  -  get wallet");
         });
-      /* await axios
-        .get("http://localhost:1243/categories", req)
+       await axios
+        .get(process.env.CATEGORIES_URL ||"", req)
         .then(function (res) {
           categories = res.data;
         })
         .catch(function (error) {
           log.fatal(error + "get categories");
-        });*/
+        });
       const messages = req.flash("info");
       res.render("index", {
         locals,
@@ -40,7 +40,7 @@ const Router = () => {
         pages: 10,
         messages,
         wallets,
-        /*categories,*/
+        categories,
       });
     } catch (error) {
       console.log(error);
