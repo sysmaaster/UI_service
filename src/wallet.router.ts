@@ -28,7 +28,7 @@ const walletRouter = () => {
     await axios
       .put(`${process.env.WALLET_URL ||""}/${req.params.id}`, req.body)
       .then(function (response) {
-        console.log(response);
+       // console.log(response);
 
         req.flash("info", " wallet ben edit.");
         res.redirect("/");
@@ -45,7 +45,7 @@ const walletRouter = () => {
       await axios
         .delete(`${process.env.WALLET_URL ||""}/${req.params.id}`)
         .then(function (response) {
-          console.log(response);
+        //  console.log(response);
 
           req.flash("info", " wallet ben delete.");
           res.redirect("/");

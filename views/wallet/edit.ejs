@@ -29,178 +29,161 @@
 </div>
 
 <form action="/wallet/edit/<%= wallets_item.id %>" method="post">
-    <div class="row form-group mb-4">
-      <div class="col-6 col-sm-4">
-        <label for="W_NAME">W_NAME</label>
+  <div class="row form-group mb-4">
+    <div class="col-6 col-sm-4">
+      <label for="W_NAME">W_NAME</label>
+      <input
+        type="text"
+        class="form-control"
+        id="W_NAME"
+        name="W_NAME"
+        value="<%= wallets_item.W_NAME %>"
+        placeholder="Карта Для Виплат"
+        required
+      />
+    </div>
+
+    <div class="col-6 col-sm-4">
+      <label for="W_COMMENT">W_COMMENT</label>
+      <input
+        type="text"
+        class="form-control"
+        id="W_COMMENT"
+        name="W_COMMENT"
+        value="<%= wallets_item.W_COMMENT  %>"
+        placeholder="Зарплатка"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row form-group mb-4">
+    <div class="col-6 col-sm-4">
+      <label for="SUMMA">SUMMA</label>
+      <input
+        type="text"
+        class="form-control"
+        id="SUMMA"
+        name="SUMMA"
+        value="<%= wallets_item.SUMMA  %>"
+        placeholder="0.00"
+        required
+      />
+    </div>
+
+    <div class="col-6 col-sm-4">
+      <label for="LIMIT">LIMIT</label>
+      <input
+        type="text"
+        class="form-control"
+        id="LIMIT"
+        name="LIMIT"
+        value="<%= wallets_item.LIMIT  %>"
+        placeholder="0.00"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row form-group mb-4">
+    <div class="col-6 col-sm-4">
+      <label for="LIMIT">CCY</label>
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="W_NAME"
-          name="W_NAME"
-          value="<%= wallets_item.W_NAME %>"
-          placeholder="Карта Для Виплат"
-          required
+          class="form-check-input"
+          type="radio"
+          name="CCY"
+          id="UAH"
+          value="UAH"
+          checked
         />
+        <label class="form-check-label" for="UAH"> UAH </label>
       </div>
-  
-      <div class="col-6 col-sm-4">
-        <label for="W_COMMENT">W_COMMENT</label>
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="W_COMMENT"
-          name="W_COMMENT"
-          value="<%= wallets_item.W_COMMENT  %>"
-          placeholder="Зарплатка"
-          required
+          class="form-check-input"
+          type="radio"
+          name="CCY"
+          id="USD"
+          value="USD"
         />
+        <label class="form-check-label" for="USD"> USD </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="CCY"
+          id="EUR"
+          value="EUR"
+        />
+        <label class="form-check-label" for="EUR"> EUR </label>
       </div>
     </div>
-  
-    <div class="row form-group mb-4">
-      <div class="col-6 col-sm-4">
-        <label for="SUMMA">SUMMA</label>
+
+    <div class="col-6 col-sm-4">
+      <label for="LIMIT">TYPE</label>
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="SUMMA"
-          name="SUMMA"
-          value="<%= wallets_item.SUMMA  %>"
-          placeholder="0.00"
-          required
+          class="form-check-input"
+          type="radio"
+          name="TYPE"
+          id="CARD"
+          value="CARD"
+          checked
         />
+        <label class="form-check-label" for="CARD"> CARD </label>
       </div>
-  
-      <div class="col-6 col-sm-4">
-        <label for="LIMIT">LIMIT</label>
+      <div class="form-check">
         <input
-          type="text"
-          class="form-control"
-          id="LIMIT"
-          name="LIMIT"
-          value="<%= wallets_item.LIMIT  %>"
-          placeholder="0.00"
-          required
+          class="form-check-input"
+          type="radio"
+          name="TYPE"
+          id="CREDIT"
+          value="CREDIT"
         />
+        <label class="form-check-label" for="CREDIT"> CREDIT </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="TYPE"
+          id="DEPOSIT"
+          value="DEPOSIT"
+        />
+        <label class="form-check-label" for="DEPOSIT"> DEPOSIT </label>
       </div>
     </div>
-  
-    <div class="row form-group mb-4">
-      <div class="col-6 col-sm-4">
-        <label for="LIMIT">CCY</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="CCY" id="UAH" value="UAH" checked>
-          <label class="form-check-label" for="UAH">
-            UAH
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="CCY" id="USD" value="USD" >
-          <label class="form-check-label" for="USD">
-            USD
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="CCY" id="EUR" value="EUR" >
-          <label class="form-check-label" for="EUR">
-            EUR
-          </label>
-        </div>
+  </div>
+  <div class="row form-group mb-4">
+    <div class="col-6 col-sm-4">
+      <label for="LIMIT">HOVER ?</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="HOVER"
+          value="true"
+          id="true"
+        />
+        <label class="form-check-label" for="true"> true </label>
       </div>
-  
-      <div class="col-6 col-sm-4">
-        <label for="LIMIT">TYPE</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="TYPE" id="CARD" value="CARD" checked>
-          <label class="form-check-label" for="CARD">
-            CARD
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="TYPE" id="CREDIT" value="CREDIT" >
-          <label class="form-check-label" for="CREDIT">
-            CREDIT
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="TYPE" id="DEPOSIT" value="DEPOSIT" >
-          <label class="form-check-label" for="DEPOSIT">
-            DEPOSIT
-          </label>
-        </div>
-  
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="HOVER"
+          value="false"
+          id="false"
+          checked
+        />
+        <label class="form-check-label" for="false"> false </label>
       </div>
     </div>
-    <div class="row form-group mb-4">
-      <div class="col-6 col-sm-4">
-        <label for="LIMIT">HOVER ?</label>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="HOVER" value="true" id="true">
-          <label class="form-check-label" for="true">
-            true
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="HOVER" value="false" id="false" checked>
-          <label class="form-check-label" for="false">
-            false
-          </label>
-        </div>
-      </div>
-    </div>
+  </div>
 
   <div class="form-group mb-4">
     <button type="submit" class="btn btn-primary">Update Wallet</button>
-
-    <button
-      type="button"
-      class="btn btn-danger"
-      data-bs-toggle="modal"
-      id="deleteButton"
-      data-bs-target="#deleteModal"
-    >
-      Delete Wallet
-    </button>
   </div>
 </form>
-
-<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title">
-          You are about to remove a <%= wallets_item.W_NAME %> record.
-        </div>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <p>
-          This will remove the wallets_item record of
-          <b class="fw-bold"
-            ><%= wallets_item.W_NAME %> <%= wallets_item.W_COMMENT %></b
-          ><br />
-          Are you sure?
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <form
-        action="/categories/drop/<%=  item.id %>"
-        method="post"
-          class="position-relative"
-        >
-          <button type="submit" class="btn btn-primary">
-            Yes, Remove wallet
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>

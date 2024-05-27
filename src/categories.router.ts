@@ -48,7 +48,7 @@ const categoriesRouter = () => {
       await axios
         .put(`${process.env.CATEGORIES_URL || ""}/${req.params.id}`, req.body)
         .then(function (response: any) {
-          console.log(response);
+         // console.log(response);
 
           req.flash("info", " categories ben edit.");
           res.redirect("/");
@@ -74,7 +74,7 @@ const categoriesRouter = () => {
         await axios
           .delete(`${process.env.CATEGORIES_URL || ""}/${req.params.id}`)
           .then(function (response: any) {
-            console.log(response);
+          //  console.log(response);
 
             req.flash("info", " categories ben delete.");
             res.redirect("/");

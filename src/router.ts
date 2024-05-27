@@ -42,7 +42,7 @@ const Router = () => {
         categories,
       });
     } catch (error) {
-      console.log(error);
+      log.fatal(error);
     }
   });
   
@@ -55,7 +55,7 @@ const Router = () => {
     try {
       res.render("about", locals);
     } catch (error) {
-      console.log(error);
+      log.fatal(error);
     }
   });
 
@@ -91,7 +91,7 @@ const Router = () => {
         wallets_item,
       });
     } catch (error) {
-      console.log(error);
+      log.fatal(error);
     }
   });
 
@@ -117,7 +117,7 @@ const Router = () => {
         wallets_item,
       });
     } catch (error) {
-      console.log(error);
+      log.fatal(error);
     }
   });
   //** render categories/add" */
@@ -151,7 +151,7 @@ const Router = () => {
         categories_item,
       });
     } catch (error) {
-      console.log(error);
+      log.fatal(error);
     }
   });
 
