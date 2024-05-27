@@ -2,7 +2,6 @@ import express from "express";
 import log from "./logger.service";
 import axios from "axios";
 
-import path from "path";
 
 
 const Router = () => {
@@ -46,14 +45,7 @@ const Router = () => {
       console.log(error);
     }
   });
-  router.post("/eventlist", async (req, res) => { 
-    console.log("ds")
-    const _basedir = path.resolve(path.resolve(), "public");
-    console.log(_basedir)
-    res.setHeader("content-type", "text/html;charset=utf-8");
-    res.sendFile(_basedir+"/2eventlist.html")
-  });
-
+  
   /** render about */
   router.get("/about", (req, res) => {
     const locals = {
@@ -77,40 +69,7 @@ const Router = () => {
     res.render("wallet/add", locals);
   });
 
-  //** Create wallet */
-  router.post("/wallet/add", async (req, res) => {
-    axios
-      .post(process.env.WALLET_URL ||"", req.body)
-      .then(function (response) {
-        // console.log(response);
-
-        req.flash("info", "New wallet added.");
-        res.redirect("/");
-      })
-      .catch(function (error) {
-        log.fatal(error);
-        res.sendStatus(500);
-      });
-  });
-
-  /** Update  wallet */
-  router.post("/wallet/edit/:id", async (req, res) => {
-    log.fatal(req);
-    await axios
-      .put(`${process.env.WALLET_URL ||""}/${req.params.id}`, req.body)
-      .then(function (response) {
-        console.log(response);
-
-        req.flash("info", " wallet ben edit.");
-        res.redirect("/");
-      })
-      .catch(function (error) {
-        log.fatal(error);
-        res.sendStatus(500);
-      });
-  });
-
-  /**render wallet/view */
+  /** render wallet/view */
   router.get("/wallet/view/:id", async (req, res) => {
     try {
       const wallets_item = await axios
@@ -161,30 +120,6 @@ const Router = () => {
       console.log(error);
     }
   });
-
-  /** delete wallet */
-  router.post("/wallet/drop/:id", async (req, res) => {
-    try {
-      await axios
-        .delete(`${process.env.WALLET_URL ||""}/${req.params.id}`)
-        .then(function (response) {
-          console.log(response);
-
-          req.flash("info", " wallet ben delete.");
-          res.redirect("/");
-        })
-        .catch(function (error) {
-          log.fatal(error);
-        });
-      const locals = {
-        title: "View Customer Data",
-        description: "Free NodeJs User Management System",
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
   //** render categories/add" */
   router.get("/categories/add", (req, res) => {
     const locals = {
@@ -194,21 +129,30 @@ const Router = () => {
 
     res.render("categories/add", locals);
   });
+  /** render wallet/edit */
+  router.get("/categories/edit/:id", async (req, res) => {
+    try {
+      const categories_item = await axios
+        .get(`${process.env.CATEGORIES_URL ||""}/${req.params.id}`)
+        .then(function (res) {
+          return res.data;
+        })
+        .catch(function (error) {
+          log.fatal(error + "get categories");
+          return [];
+        });
+      const locals = {
+        title: "View Customer Data",
+        description: "Free NodeJs User Management System",
+      };
 
-  //** Create Categories */
-  router.post("/categories/add", async (req, res) => {
-    axios
-      .post(process.env.CATEGORIES_URL ||"", req.body)
-      .then(function (response) {
-        // console.log(response);
-
-        req.flash("info", "New categories added.");
-        res.redirect("/");
-      })
-      .catch(function (error) {
-        log.fatal(error);
-        res.sendStatus(500);
+      res.render("categories/edit", {
+        locals,
+        categories_item,
       });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return router;

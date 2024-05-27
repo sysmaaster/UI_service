@@ -7,7 +7,8 @@ import expressLayout from 'express-ejs-layouts'
 import session from 'express-session';
 import path from "path";
 import Router from "./router";
-import Fake from "./fake";
+import categoriesRouter from "./categories.router";
+import walletRouter from "./wallet.router";
 
 const app = express();
 const port = 3000;
@@ -51,6 +52,7 @@ app.set("views", path.resolve(path.resolve(), "views")); // set express to look 
 
 // Routes 
 app.use( Router());
-app.use( Fake());
+app.use( categoriesRouter());
+app.use( walletRouter());
 
 export default app;
