@@ -1,12 +1,17 @@
 version: "3.7"
 services:
- api:
-  build:
-   context: .
-   target: build
-  volumes:
-   - ./:/app/
-   - /app/node_modules/
-  ports:
-   - 4000:4000
-  command: npm run dev
+  ui_service:
+    container_name: ui_service
+    build:
+      context: .
+      target: build
+    volumes:
+      - ./:/app/
+      - /app/node_modules/
+    ports:
+      - 4000:4000
+    restart: always
+    environment:
+      - WALLET_URL=http://wallet_service:21222
+      - CATEGORIES_URL=http://categories_service:21223
+    command: yarn dev
