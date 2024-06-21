@@ -9,6 +9,7 @@ const Router = () => {
 
   /** render index */
   router.get("/", async (req, res) => {
+    
     const locals = {
       title: "NodeJs",
       description: "Free NodeJs User Management System",
@@ -17,20 +18,20 @@ const Router = () => {
       let wallets: any = [];
       let categories: any = [];
       await axios
-        .get(process.env.WALLET_URL ||"", req)
-        .then(function (res) {
+        .get(process.env.WALLET_URL ||"NULLS")
+        .then(function (res) { log.fatal(process.env.WALLET_URL)
           wallets = res.data;
         })
         .catch(function (error) {
-          log.fatal(error + "  -  get wallet");
+          log.fatal(error );
         });
        await axios
-        .get(process.env.CATEGORIES_URL ||"", req)
+        .get(process.env.CATEGORIES_URL ||"NULLS")
         .then(function (res) {
           categories = res.data;
         })
         .catch(function (error) {
-          log.fatal(error + "get categories");
+          log.fatal(error + " + get categories");
         });
       const messages = req.flash("info");
       res.render("index", {
@@ -104,7 +105,7 @@ const Router = () => {
           return res.data;
         })
         .catch(function (error) {
-          log.fatal(error + "get wallet");
+          log.fatal(error + " get wallet");
           return [];
         });
       const locals = {
@@ -138,7 +139,7 @@ const Router = () => {
           return res.data;
         })
         .catch(function (error) {
-          log.fatal(error + "get categories");
+          log.fatal(error + " get categories");
           return [];
         });
       const locals = {

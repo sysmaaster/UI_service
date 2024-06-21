@@ -9,7 +9,7 @@ const walletRouter = () => {
   //** Create wallet */
   router.post("/wallet/add", async (req, res) => {
     axios
-      .post(process.env.WALLET_URL ||"", req.body)
+      .post(process.env.WALLET_URL ||"NULLS", req.body)
       .then(function (response) {
         // console.log(response);
 
@@ -26,7 +26,7 @@ const walletRouter = () => {
   router.post("/wallet/edit/:id", async (req, res) => {
     log.fatal(req);
     await axios
-      .put(`${process.env.WALLET_URL ||""}/${req.params.id}`, req.body)
+      .put(`${process.env.WALLET_URL ||"NULLS"}/${req.params.id}`, req.body)
       .then(function (response) {
        // console.log(response);
 
@@ -43,7 +43,7 @@ const walletRouter = () => {
   router.post("/wallet/drop/:id", async (req, res) => {
     try {
       await axios
-        .delete(`${process.env.WALLET_URL ||""}/${req.params.id}`)
+        .delete(`${process.env.WALLET_URL ||"NULLS"}/${req.params.id}`)
         .then(function (response) {
         //  console.log(response);
 
